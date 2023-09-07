@@ -8,7 +8,7 @@
       href="https://fonts.googleapis.com/css?family=Noto+Serif+JP:400,700|Noto+Serif:400,700,700i&display=swap&subset=japanese"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" type="text/css" href="./css/slick.css" />
     <link rel="stylesheet" href="./css/style.css" />
   </head>
@@ -152,5 +152,32 @@
     <!-- <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
     <script type="text/javascript" src="./js/slick.min.js"></script>
     <script src="./js/script.js"></script>
+    <script>
+      !(function (o, e, n) {
+        var r = [];
+        if (window.reproio)
+          console.info("Repro Web SDK was loaded more than once");
+        else {
+          window.reproio = function () {
+            r.push(arguments);
+          };
+          var i = o.createElement(e),
+            t = o.getElementsByTagName(e)[0];
+          (i.src = "https://cdn.reproio.com/web/v2/repro-sdk.min.js"),
+            (i.async = !0),
+            (i.crossOrigin = ""),
+            (i.onload = function () {
+              window.reproio("setSnippetVersion", "2.1"),
+                r.forEach(function (o) {
+                  window.reproio.apply(window.reproio, o);
+                });
+            }),
+            t.parentNode.insertBefore(i, t);
+        }
+      })(document, "script");
+      reproio("setUserID", "111");
+      reproio("setup", "6559a4ff-bd26-4b94-b1ba-dda4d7762c34");
+      reproio("track", "PageView");
+    </script>
   </body>
 </html>
